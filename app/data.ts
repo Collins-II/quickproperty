@@ -363,12 +363,12 @@ const estateAmenities = [
 export default estateAmenities;
 
 
-export const provinces: Province[] = [
+export const provincesArr: Province[] = [
     {
         name: 'Lusaka',
         districts: [
             {
-                name: 'Lusaka District',
+                name: 'Lusaka',
                 compounds: [
                     { name: 'Chazanga' },
                     { name: 'Kabanana' },
@@ -418,7 +418,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Chongwe District',
+                name: 'Chongwe',
                 compounds: [
                     { name: 'Chongwe' },
                     { name: 'Chirundu' },
@@ -438,7 +438,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Kafue District',
+                name: 'Kafue',
                 compounds: [
                     { name: 'Shimabala' },
                     { name: 'Chilanga' }, // Partly in Kafue District
@@ -457,7 +457,7 @@ export const provinces: Province[] = [
         name: 'Copperbelt',
         districts: [
             {
-                name: 'Kitwe District',
+                name: 'Kitwe',
                 compounds: [
                     { name: 'Nkana East' },
                     { name: 'Nkana West' },
@@ -484,7 +484,7 @@ export const provinces: Province[] = [
                 ]
             },
             {
-                name: 'Ndola District',
+                name: 'Ndola',
                 compounds: [
                     { name: 'Chipulukusu' },
                     { name: 'Itawa' },
@@ -512,7 +512,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: "Chingola District",
+                name: "Chingola",
                 compounds: [
                     { name: "Nchanga North" },
                     { name: "Nchanga South" },
@@ -531,7 +531,7 @@ export const provinces: Province[] = [
                 ]
             },
             {
-                name: 'Mufulira District',
+                name: 'Mufulira',
                 compounds: [
                     { name: 'Kantanshi' },
                     { name: 'Butondo' },
@@ -547,7 +547,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Chililabombwe District',
+                name: 'Chililabombwe',
                 compounds: [
                     { name: 'Kamenza' },
                     { name: 'Kansenshi' },
@@ -568,7 +568,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Luanshya District',
+                name: 'Luanshya',
                 compounds: [
                     { name: 'Mikomfwa' },
                     { name: 'Mpatamatu' },
@@ -584,7 +584,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Kalulushi District',
+                name: 'Kalulushi',
                 compounds: [
                     { name: 'Chambishi' },
                     { name: 'Chati' },
@@ -601,7 +601,7 @@ export const provinces: Province[] = [
                 ]
             },
             {
-                name: 'Lufwanyama District',
+                name: 'Lufwanyama',
                 compounds: [
                     { name: 'Mpatamato' },
                     { name: 'Kafubu' },
@@ -612,7 +612,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Mpongwe District',
+                name: 'Mpongwe',
                 compounds: [
                     { name: 'Mpongwe Compound' },
                     { name: 'Mokambo Compound' },
@@ -627,7 +627,7 @@ export const provinces: Province[] = [
                 ],
             },
             {
-                name: 'Masaiti District',
+                name: 'Masaiti',
                 compounds: [
                     { name: 'Bwana Mkubwa' },
                     { name: 'Chimwemwe' },
@@ -644,31 +644,31 @@ export const provinces: Province[] = [
         name: 'Central',
         districts: [
             {
-                name: 'Kabwe District',
+                name: 'Kabwe',
                 compounds: [
                     { name: 'Kabwe' },
                 ],
             },
             {
-                name: 'Mkushi District',
+                name: 'Mkushi',
                 compounds: [
                     { name: 'Mkushi' },
                 ],
             },
             {
-                name: 'Serenje District',
+                name: 'Serenje',
                 compounds: [
                     { name: 'Serenje' },
                 ],
             },
             {
-                name: 'Kapiri Mposhi District',
+                name: 'Kapiri Mposhi',
                 compounds: [
                     { name: 'Kapiri Mposhi' },
                 ],
             },
             {
-                name: 'Chibombo District',
+                name: 'Chibombo',
                 compounds: [
                     { name: 'Kampasa Compound' },
                     { name: 'Kasanka Compound' },
@@ -688,31 +688,31 @@ export const provinces: Province[] = [
         name: 'Luapula',
         districts: [
             {
-                name: 'Mansa District',
+                name: 'Mansa',
                 compounds: [
                     { name: 'Mansa' },
                 ],
             },
             {
-                name: 'Kawambwa District',
+                name: 'Kawambwa',
                 compounds: [
                     { name: 'Kawambwa' },
                 ],
             },
             {
-                name: 'Nchelenge District',
+                name: 'Nchelenge',
                 compounds: [
                     { name: 'Nchelenge' },
                 ],
             },
             {
-                name: 'Mwense District',
+                name: 'Mwense',
                 compounds: [
                     { name: 'Mwense' },
                 ],
             },
             {
-                name: 'Samfya District',
+                name: 'Samfya',
                 compounds: [
                     { name: 'Samfya' },
                 ],
@@ -723,31 +723,31 @@ export const provinces: Province[] = [
         name: 'Southern',
         districts: [
             {
-                name: 'Livingstone District',
+                name: 'Livingstone',
                 compounds: [
                     { name: 'Livingstone' },
                 ],
             },
             {
-                name: 'Choma District',
+                name: 'Choma',
                 compounds: [
                     { name: 'Choma' },
                 ],
             },
             {
-                name: 'Monze District',
+                name: 'Monze',
                 compounds: [
                     { name: 'Monze' },
                 ],
             },
             {
-                name: 'Mazabuka District',
+                name: 'Mazabuka',
                 compounds: [
                     { name: 'Mazabuka' },
                 ],
             },
             {
-                name: 'Namwala District',
+                name: 'Namwala',
                 compounds: [
                     { name: 'Namwala' },
                 ],
@@ -758,31 +758,31 @@ export const provinces: Province[] = [
         name: 'Eastern',
         districts: [
             {
-                name: 'Chipata District',
+                name: 'Chipata',
                 compounds: [
                     { name: 'Chipata' },
                 ],
             },
             {
-                name: 'Lundazi District',
+                name: 'Lundazi',
                 compounds: [
                     { name: 'Lundazi' },
                 ],
             },
             {
-                name: 'Petauke District',
+                name: 'Petauke',
                 compounds: [
                     { name: 'Petauke' },
                 ],
             },
             {
-                name: 'Katete District',
+                name: 'Katete',
                 compounds: [
                     { name: 'Katete' },
                 ],
             },
             {
-                name: 'Chadiza District',
+                name: 'Chadiza',
                 compounds: [
                     { name: 'Chadiza' },
                 ],
@@ -793,31 +793,31 @@ export const provinces: Province[] = [
         name: 'Northern',
         districts: [
             {
-                name: 'Kasama District',
+                name: 'Kasama',
                 compounds: [
                     { name: 'Kasama' },
                 ],
             },
             {
-                name: 'Mbala District',
+                name: 'Mbala',
                 compounds: [
                     { name: 'Mbala' },
                 ],
             },
             {
-                name: 'Mpulungu District',
+                name: 'Mpulungu',
                 compounds: [
                     { name: 'Mpulungu' },
                 ],
             },
             {
-                name: 'Luwingu District',
+                name: 'Luwingu',
                 compounds: [
                     { name: 'Luwingu' },
                 ],
             },
             {
-                name: 'Mporokoso District',
+                name: 'Mporokoso',
                 compounds: [
                     { name: 'Mporokoso' },
                 ],
@@ -828,31 +828,31 @@ export const provinces: Province[] = [
         name: 'Muchinga',
         districts: [
             {
-                name: 'Chinsali District',
+                name: 'Chinsali',
                 compounds: [
                     { name: 'Chinsali' },
                 ],
             },
             {
-                name: 'Mpika District',
+                name: 'Mpika',
                 compounds: [
                     { name: 'Mpika' },
                 ],
             },
             {
-                name: 'Isoka District',
+                name: 'Isoka',
                 compounds: [
                     { name: 'Isoka' },
                 ],
             },
             {
-                name: 'Nakonde District',
+                name: 'Nakonde',
                 compounds: [
                     { name: 'Nakonde' },
                 ],
             },
             {
-                name: 'Shiwangandu District',
+                name: 'Shiwangandu',
                 compounds: [
                     { name: 'Shiwangandu' },
                 ],
@@ -863,31 +863,31 @@ export const provinces: Province[] = [
         name: 'Western',
         districts: [
             {
-                name: 'Mongu District',
+                name: 'Mongu',
                 compounds: [
                     { name: 'Mongu' },
                 ],
             },
             {
-                name: 'Senanga District',
+                name: 'Senanga',
                 compounds: [
                     { name: 'Senanga' },
                 ],
             },
             {
-                name: 'Kalabo District',
+                name: 'Kalabo',
                 compounds: [
                     { name: 'Kalabo' },
                 ],
             },
             {
-                name: 'Lukulu District',
+                name: 'Lukulu',
                 compounds: [
                     { name: 'Lukulu' },
                 ],
             },
             {
-                name: 'Shangombo District',
+                name: 'Shangombo',
                 compounds: [
                     { name: 'Shangombo' },
                 ],
@@ -898,25 +898,25 @@ export const provinces: Province[] = [
         name: 'N-Western',
         districts: [
             {
-                name: 'Solwezi District',
+                name: 'Solwezi',
                 compounds: [
                     { name: 'Solwezi' },
                 ],
             },
             {
-                name: 'Mwinilunga District',
+                name: 'Mwinilunga',
                 compounds: [
                     { name: 'Mwinilunga' },
                 ],
             },
             {
-                name: 'Zambezi District',
+                name: 'Zambezi',
                 compounds: [
                     { name: 'Zambezi' },
                 ],
             },
             {
-                name: 'Chavuma District',
+                name: 'Chavuma',
                 compounds: [
                     { name: 'Chavuma' },
                 ],

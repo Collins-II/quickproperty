@@ -16,6 +16,7 @@ import Image from "next/image";
 import HostGrading from "../ui/host-grading";
 import Appointment from "../appointment";
 import { useProperty } from "@/app/context/PropertyContext";
+import Notice from "../ui/notice";
 
 // Interface for the component props
 interface ListingReservationProps {
@@ -49,16 +50,22 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   locationValue,
   category,
 }) => {
+  let perCent = 0.5 / 10
   const { data: session } = useSession();
   const userId = session?.user._id;
   const user = session?.user;
   const router = useRouter();
   const { setSelectedDate, setSelectedTime, selectedDate, selectedTime } = useProperty();
   const reservationModal = useReservationModal();
-  const reservationFee = 0.5 / 10 * totalPrice;
+  const reservationFee = perCent * totalPrice;
   const { getByValue } = useCountries();
   const coordinates = getByValue(locationValue)?.latlng;
+  const [isNoticeVisible, setIsNoticeVisible] = useState(false);
 
+  const handleCancel = () => {
+    console.log('Reservation cancelled');
+    setIsNoticeVisible(false);
+  };
 
   const onReserve = useCallback((data: any) => {
     reservationModal.propertyUserId = data.userId;
@@ -66,6 +73,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
     reservationModal.price = reservationFee;
     reservationModal.onOpen();
   }, [reservationModal, reservationFee]);
+
+  const handleContinue = () => {
+    console.log('Continuing with reservation');
+    onReserve({ listing, userId: propertyUserId })
+    setIsNoticeVisible(false);
+    // Add logic to proceed with the reservation
+  };
 
   const handleProfile = () => {
     router.push(`/profile/${user?._id}`);
@@ -80,6 +94,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       md:border-[1px]
       border-neutral-200 
       overflow-hidden
+      relative
     ">
       <div className="flex flex-col gap-1 p-4">
         <div className="
@@ -132,12 +147,20 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       </div>
       <hr />
 
+      {isNoticeVisible && (
+        <Notice
+          percentageCharge={perCent} // Example charge percentage
+          onCancel={handleCancel}
+          onContinue={handleContinue}
+        />
+      )}
+
       {userId !== propertyUserId ? (
         <div className="p-4">
           <Button
             disabled={isReserveDisabled} // Disable button if no date/time selected
             label="Poke Host"
-            onClick={() => onReserve({ listing, userId: propertyUserId })}
+            onClick={() => setIsNoticeVisible(true)}
           />
         </div>
       ) : null}

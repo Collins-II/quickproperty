@@ -87,7 +87,10 @@ const RescheduleModal: React.FC<RescheduleModalProps> = ({ isOpen, onClose }) =>
   let currentStatus = status.pending;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30 duration-500">
+    <div className="fixed inset-0 z-50 flex items-center justify-center duration-500 focus:outline-none
+          bg-background/80
+          backdrop-blur-sm
+          data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
       <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-lg max-h-[100vh] lg:max-h-[90vh] overflow-y-scroll showed-scroll-bar">
         <div className="flex justify-end mb-4">
           <button

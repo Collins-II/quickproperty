@@ -1,26 +1,53 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Map from '../components/near-map';
+import { IListing } from '../lib/database/models/listing.model';
 
-interface Property {
-    id: number;
-    name: string;
-    lat: number;
-    lng: number;
+interface PropertyData {
+    data: IListing[];
 }
 
-const fetchPropertiesNearby = async (lat: number, lng: number): Promise<Property[]> => {
-    // Mock API call
-    return [
-        { id: 1, name: 'Property 1', lat: lat + 0.01, lng: lng + 0.01 },
-        { id: 2, name: 'Property 2', lat: lat + 0.02, lng: lng - 0.01 },
-        { id: 3, name: 'Property 3', lat: lat - 0.01, lng: lng + 0.02 },
-    ];
-};
-
-const NearProperty: React.FC = () => {
+const NearProperty: React.FC<PropertyData> = ({ data }) => {
     const [userLocation, setUserLocation] = useState<number[] | null>(null);
-    const [properties, setProperties] = useState<Property[]>([]);
+    const [properties, setProperties] = useState<IListing[]>([]);
+
+    /**
+     * Calculates the distance between two geographical points using the Haversine formula.
+     * @param lat1 Latitude of the first location
+     * @param lng1 Longitude of the first location
+     * @param lat2 Latitude of the second location
+     * @param lng2 Longitude of the second location
+     * @returns Distance in kilometers
+     */
+    const calculateDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+        const toRadians = (degrees: number) => degrees * (Math.PI / 180);
+        const R = 6371; // Radius of Earth in kilometers
+
+        const dLat = toRadians(lat2 - lat1);
+        const dLng = toRadians(lng2 - lng1);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(toRadians(lat1)) *
+                Math.cos(toRadians(lat2)) *
+                Math.sin(dLng / 2) *
+                Math.sin(dLng / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    };
+
+    /**
+     * Filters properties near the user's current district or compound location.
+     * @param lat User's latitude
+     * @param lng User's longitude
+     * @param maxDistance Maximum distance (in kilometers) to filter properties
+     * @returns Array of nearby properties
+     */
+    const fetchPropertiesNearby = async (lat: number, lng: number, maxDistance: number = 10): Promise<IListing[]> => {
+        return data.filter((property) => {
+            const distance = calculateDistance(lat, lng, property.location.lat, property.location.lng);
+            return distance <= maxDistance;
+        });
+    };
 
     useEffect(() => {
         // Get user's current location
@@ -42,7 +69,7 @@ const NearProperty: React.FC = () => {
     }, []);
 
     return (
-        <div className=''>
+        <div className="">
             <Map userLocation={userLocation || undefined} properties={properties} />
         </div>
     );

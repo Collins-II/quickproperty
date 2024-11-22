@@ -72,7 +72,7 @@ const PropertyFilter = () => {
                 "
             >
                 {categories.map((item) => (
-                    <div key={item.label} className="col-span-1">
+                    <div key={item.label} className="col-span-1 py-2">
                         <PropertyInput
                             onClick={() => onSelectCategory(item.label)}
                             selected={active === item.label}

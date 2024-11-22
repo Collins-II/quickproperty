@@ -73,8 +73,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <div className="flex flex-col gap-2">
         <ShareLinks listingId={listingId} currentUser={user as SafeUser} data={data} />
         <hr />
-        <div className="text-1xl md:text-2xl font-semibold mt-5">
-          ZMW {5467}
+        
+        <div className="flex items-center justify-between w-full">
+        <div className="text-md md:text-lg font-semibold">
+          ZMW {data.price}
         </div>
         <div className="
             flex 
@@ -86,13 +88,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         >
 
           <div className="flex flex-row gap-1">
-            <p className="font-bold text-1xl md:text-2xl text-slate-900">{roomCount} <span className=" font-light text-neutral-500">rooms</span> </p>
+            <p className="font-semibold text-md md:text-lg text-slate-900">{roomCount} <span className=" font-light text-neutral-500">rooms</span> </p>
           </div>
-          <div className="flex flex-row gap-1">
-            <p className="font-bold text-1xl md:text-2xl text-slate-900">{bathroomCount} <span className=" font-light text-neutral-500">{bathroomCount > 1 ? "bathrooms" : "bathroom"}</span></p>
-          </div>
+          
         </div>
-        <div className="flex items-center justify-between w-full">
           {category && (
             <ListingCategory
               icon={category.icon}
@@ -128,7 +127,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 
       <hr />
       <p className="font-bold text-2xl md:text-3xl text-slate-900 ">Facilities</p>
-      {amenitiesOpts && (<Amenities amenities={amenitiesOpts} />)}
+      {data?.amenities && (<Amenities amenities={data.amenities} />)}
     </div>
   );
 }

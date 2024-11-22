@@ -27,7 +27,7 @@ import CountInput from '../inputs/CountInput';
 import { Range } from 'react-date-range';
 import BookingSlot from '../inputs/CountInput';
 import AddressSelect, { AddressSelectValue } from '../inputs/AddressSelect';
-import { AMENITIES_LIST, District, Province, Town, provinces, provincesNames } from '@/app/data';
+import { AMENITIES_LIST, District, Province, Town, provincesArr, provincesNames } from '@/app/data';
 import PlacesHome from '../places';
 
 enum STEPS {
@@ -69,9 +69,10 @@ const RentModal = () => {
   const [selectedProvinceValue, setSelectedProvinceValue] = useState<AddressSelectValue | undefined>(undefined);
   const [selectedDistrictValue, setSelectedDistrictValue] = useState<AddressSelectValue | undefined>(undefined);
   const [selectedValue, setSelectedValue] = useState<AddressSelectValue | undefined>(undefined);
+  const [selectedCompound, setSelectedCompound] = useState<string>();
 
   const filterProvince = (filtertext: string) => {
-    const province = provinces?.filter(
+    const province = provincesArr?.filter(
       (item: any) => {
         return filtertext === item.name
       }
@@ -202,7 +203,8 @@ const RentModal = () => {
   useEffect(() => {
     setCustomValue('province', location?.label)
     setCustomValue('district', location?.label)
-  }, [location])
+    setCustomValue('compound', selectedCompound)
+  }, [location,selectedCompound])
 
   const onBack = () => {
     setStep((value) => value - 1);
@@ -225,7 +227,7 @@ const RentModal = () => {
 
     setIsLoading(true);
 
-    axios.post('/api/listings', { ...data, amenities: selectedAmenities, email: user?.email, user: user })
+    axios.post('/api/listings', { ...data, amenities: selectedAmenities, email: user?.email, user: user,location,compound:selectedCompound })
       .then((res) => {
         toast.success('Listing created!');
         router.push(`/properties/${res.data._id}`)
@@ -356,8 +358,8 @@ const RentModal = () => {
           title="Where do you wanna go?"
           subtitle="Find the perfect location!"
         />
-        <PlacesHome setLocation={setLocation} />
-        {location && (
+        <PlacesHome setLocation={setLocation} setSelectedCompound={setSelectedCompound}/>
+        {/*location && (
           <div className='px-3'>
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="compound">
               Enter compound
@@ -388,7 +390,7 @@ const RentModal = () => {
 
             </div>
           </div>
-        )}
+        )*/}
       </div>
     );
   }

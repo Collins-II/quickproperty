@@ -14,6 +14,7 @@ import PropertyFilter from "./components/property-filter";
 import SuggestionBox from "./components/SuggestionBox";
 import Map from "./components/Map";
 import NearProperty from "./components/near-property";
+import FinderProperty from "./components/FinderProperty";
 
 interface HomeProps {
   searchParams: IListingsParams
@@ -39,7 +40,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       <Container>
         <div className="lg:pt-5 xs:pt-18 sm:pt-18 md:pt-6 lg:pt-0">
           <Heading title="" subtitle="View properties close to your current location" />
-          <NearProperty />
+          <FinderProperty listings={listings}/>
         </div>
         <Heading title="" subtitle="Filter by property type" />
         <PropertyFilter />

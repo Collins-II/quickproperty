@@ -65,82 +65,86 @@ const Reschedule = ({
     <div className="relative bg-white rounded-lg">
       <h2 className="text-2xl font-semibold text-center mb-4">Reschedule Appointment</h2>
 
-      <div className="flex items-center gap-2 w-full mb-4">
-        {/* Date Selection */}
-        <div className="w-full">
-          <FaCalendarAlt className="text-md text-gray-400 font-semibold mb-1 ml-3" />
-          <div className="flex items-center rounded-full overflow-hidden">
-            <button
-              className={`w-full px-4 py-2 ${isToday ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              onClick={() => handleDateToggle('today')}
-            >
-              Today
-            </button>
-            <button
-              className={`w-full px-4 py-2 ${!isToday ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              onClick={() => handleDateToggle('later')}
-            >
-              Later
-            </button>
-          </div>
-        </div>
+      <div className='flex items-center gap-2 w-full'>
+                {/* Date Selection */}
+                <div className="mb-2 w-full">
+                    <FaCalendarAlt className="flex align-center text-md text-gray-300 font-semibold mb-1 ml-3" />
+                    <div className="flex items-center mb-2 rounded-full overflow-hidden">
+                        <button
+                            className={`w-full px-4 py-2 ${isToday ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleDateToggle('today')}
+                        >
+                            Today
+                        </button>
+                        <button
+                            className={`w-full px-4 py-2 ${!isToday ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleDateToggle('later')}
+                        >
+                            Later
+                        </button>
+                    </div>
+                </div>
 
-        {/* Time Selection */}
-        <div className="w-full">
-          <FaClock className="text-md font-semibold text-gray-400 mb-1 ml-3" />
-          <div className="flex items-center rounded-full overflow-hidden">
-            <button
-              className={`w-full px-4 py-2 ${isNow ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              onClick={() => handleTimeToggle('now')}
-            >
-              Now
-            </button>
-            <button
-              className={`w-full px-4 py-2 ${!isNow ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
-              onClick={() => handleTimeToggle('later')}
-            >
-              Later
-            </button>
-          </div>
-        </div>
-      </div>
+                {/* Time Selection */}
+                <div className="mb-2 w-full">
+                    <FaClock className="flex align-center text-md font-semibold text-gray-300 mb-1 ml-3" />
+                    <div className="flex items-center mb-2 rounded-full overflow-hidden">
+                        <button
+                            className={`px-4 py-2 w-full ${isNow ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleTimeToggle('now')}
+                        >
+                            Now
+                        </button>
+                        <button
+                            className={`px-4 py-2 w-full ${!isNow ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleTimeToggle('later')}
+                        >
+                            Later
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-      {/* Calendar for "Later" option */}
-      {!isToday && isOpen && (
-        <div className="flex justify-center mb-4">
-          <DatePicker
-            selected={appointmentDate}
-            onChange={handleDateChange}
-            includeDates={availableDates}
-            inline
-          />
-        </div>
-      )}
+            <div className='w-full flex items-center justify-center'>
+                {/* Calendar for "Later" option */}
+                {!isToday && isOpen && (
+                    <div className="flex flex-col justify-center items-center absolute top-0">
+                        <DatePicker
+                            selected={appointmentDate}
+                            onChange={handleDateChange}
+                            includeDates={availableDates}
+                            inline
+                        />
+                    </div>
+                )}
 
-      {/* Time Picker for "Later" option */}
-      {!isNow && (
-        <div className="flex justify-center items-center mb-4">
-          <input
-            type="time"
-            className="border border-gray-300 p-2 rounded-lg"
-            value={appointmentTime}
-            onChange={(e) => {
-              setAppointmentTime(e.target.value);
-              setUpdatedTime(e.target.value);
-            }}
-          />
-        </div>
-      )}
+                {/* Time Picker for "Later" option */}
+                {!isNow && (
+                    <div className="flex justify-center items-center">
+                        <input
+                            type="time"
+                            className="border border-gray-300 p-2 rounded-lg"
+                            value={appointmentTime}
+                            onChange={(e) => setAppointmentTime(e.target.value)}
+                        />
+                    </div>
+                )}
+            </div>
 
-      {/* Display Selected Date and Time */}
-      <div className="flex flex-col gap-2 mt-2">
-        <p className="mt-2 font-light p-2 bg-gray-200 text-slate-900 rounded-full">
-          <strong>Date:</strong> {appointmentDate ? format(appointmentDate, 'PPP') : 'Not selected'}
-        </p>
-        <p className="font-light p-2 bg-gray-200 text-slate-900 rounded-full">
-          <strong>Time:</strong> {appointmentTime || 'Not selected'}
-        </p>
-      </div>
+            {/* Display Selected Date and Time */}
+            {appointmentDate && appointmentTime && (
+                <div className="mt-2">
+                    <div className='flex flex-col gap-2'>
+                        <p className="mt-2 font-light p-2 bg-gray-200 text-slate-900 rounded-sm">
+                            <strong>Date:</strong>{' '}
+                            {appointmentDate ? format(appointmentDate, 'PPP') : 'Not selected'}
+                        </p>
+                        <p className="font-light p-2 bg-gray-200 text-slate-900 rounded-sm">
+                            <strong>Time:</strong> {appointmentTime}
+                        </p>
+                    </div>
+                </div>
+            )}
 
       {/* Action Buttons */}
       <div className="flex justify-between mt-6">

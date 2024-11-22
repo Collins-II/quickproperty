@@ -34,7 +34,8 @@ export async function POST(
       district,
       compound,
       property_type,
-      amenities
+      amenities,
+      location
     } = body;
 
     const currentUser = await getUserByEmail(email);
@@ -65,6 +66,10 @@ export async function POST(
       compound,
       property_type,
       amenities,
+      location:{
+        lat: location.latlng[0],
+        lng: location.latlng[1]
+      },
       price: parseInt(price, 10),
       userId: currentUser._id,
       user: currentUser

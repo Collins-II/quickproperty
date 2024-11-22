@@ -11,6 +11,8 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next-nprogress-bar';
+import Markers from './Home/Markers';
+import { IListing } from '../lib/database/models/listing.model';
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
@@ -29,7 +31,7 @@ interface Property {
 
 interface MapProps {
     userLocation?: number[];
-    properties: Property[];
+    properties: IListing[];
 }
 
 const Map: React.FC<MapProps> = ({ userLocation, properties }) => {
@@ -50,7 +52,7 @@ const Map: React.FC<MapProps> = ({ userLocation, properties }) => {
             center={defaultPosition}
             zoom={userLocation ? 12 : 10}
             scrollWheelZoom={true}
-            className="h-[40vh] rounded-md"
+            className="h-[60vh] rounded-md"
         >
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -67,17 +69,14 @@ const Map: React.FC<MapProps> = ({ userLocation, properties }) => {
             )}
 
             {/* Property Markers */}
-            {properties.map((property) => (
-                <Marker key={property.id} position={[property.lat, property.lng]}>
-                    <Popup>
-                        <div className='pt-2 cursor-pointer' onClick={handleClick}>
-                            <Image src="/images/est_2.jpg" alt='profile' height={50} width={80} className='rounded-md' />
-                            <p className='font-light text-1xl text-neutral-800'>{property.name}</p>
-                            <p className='font-light text-1xl text-neutral-500'>3 rooms</p>
-                        </div>
-                    </Popup>
-                </Marker>
-            ))}
+            {properties.map(
+            (item, index) =>
+              index <= 7 && (<Marker position={[item.location.lat,item.location.lng]}>
+                               <Popup>
+                                 <Markers business={item} key={item.id || index} />
+                               </Popup>
+                            </Marker>) 
+          )}
         </MapContainer>
     );
 };

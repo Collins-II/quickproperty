@@ -9,15 +9,18 @@ export interface IListing extends Document {
   imageSrc: string[];
   createdAt?: Date;
   bookingEndDate: Date;
-  bookingTotalCharge: number,
-  bookingStartDate: Date,
-  bookingDuration: number,
+  bookingTotalCharge: number;
+  bookingStartDate: Date;
+  bookingDuration: number;
   category?: string;
   compound?: string;
   roomCount?: number;
   bathroomCount?: number;
   guestCount?: number;
-  locationValue?: string;
+  location: {
+    lat: number,
+    lng: number
+  },
   province?: string;
   district?: string;
   city?: string;
@@ -25,7 +28,7 @@ export interface IListing extends Document {
   plot_size?: number;
   isReserved: boolean;
   isPremium: boolean;
-  premiumTargetDate: Date,
+  premiumTargetDate: Date;
   property_type?: string;
   costRange: string;
   userId: Schema.Types.ObjectId;
@@ -50,7 +53,10 @@ const ListingSchema = new Schema({
   roomCount: { type: Number },
   bathroomCount: { type: Number },
   guestCount: { type: Number },
-  locationValue: { type: String },
+  location: {
+    lat: { type: Number },
+    lng: { type: Number }
+  },
   province: { type: String },
   district: { type: String },
   city: { type: String },
@@ -61,17 +67,13 @@ const ListingSchema = new Schema({
   premiumTargetDate: { type: Date, default: Date.now },
   property_type: { type: String },
   costRange: { type: String },
-  userId: { type: String },
+  userId: { type: Schema.Types.ObjectId, ref: 'User' },
   price: { type: Number },
-  reservationIds: [{
-    type: Schema.Types.ObjectId
-  }],
-  amenities: [{
-    type: String
-  }],
+  reservationIds: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }],
+  amenities: [{ type: String }],
   user: { type: Schema.Types.ObjectId, ref: 'User' },
   reservations: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }],
-})
+});
 
 const Listing = (models && models.Listing) || model<IListing>('Listing', ListingSchema);
 

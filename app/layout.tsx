@@ -23,6 +23,8 @@ import SuggestionBox from './components/SuggestionBox';
 import { PropertyProvider } from './context/PropertyContext';
 import { RescheduleProvider } from './context/RescheduleContext';
 import { ViewReserveProvider } from './context/ViewReserveContext';
+import { UserLocationProvider } from './context/UserLocationContext';
+import { SelectedBusinessProvider } from './context/SelectedBusinessContext';
 
 export const metadata: Metadata = {
   title: 'Homes.Com',
@@ -48,6 +50,8 @@ const RootLayout: React.FC<LayoutProps> = ({ children, session }) => {
     <html lang="en">
       <body className={font.className}>
         <Provider session={session as never}>
+        <UserLocationProvider>
+          <SelectedBusinessProvider>
           <PropertyProvider>
           <RescheduleProvider>
           <ViewReserveProvider>
@@ -71,6 +75,8 @@ const RootLayout: React.FC<LayoutProps> = ({ children, session }) => {
             </ViewReserveProvider>
             </RescheduleProvider >
           </PropertyProvider>
+          </SelectedBusinessProvider>
+          </UserLocationProvider>
         </Provider>
       </body>
     </html>

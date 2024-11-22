@@ -65,3 +65,17 @@ export type RemoveUrlQueryParams = {
   params?: string
   keysToRemove: string[]
 }
+
+export interface Business {
+  id: number;
+  name: string;
+  geometry: any; // Replace `any` with the correct type if known
+  formatted_address: string;
+  rating: number;
+  [key: string]: any; // Allow additional properties if necessary
+}
+
+export interface RatingItem {
+  name: number; // Updated to match the actual type
+  icon: React.ReactNode;
+}

@@ -44,6 +44,8 @@ export default async function getListingById(
       locationValue: listing.locationValue,
       isReserved: listing.isReserved,
       isPremium: listing.isPremium,
+      amenities:listing.amenities,
+      location:listing.location,
       premiumTargetDate: listing.premiumTargetDate,
       property_type: listing.property_type,
       reservations: listing.reservations,

@@ -75,6 +75,11 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import { formUrlQuery, removeKeysFromQuery } from '@/app/lib/utils';
 import LocationDropdown from "../ui/location-dropdown";
 
+import { GiModernCity, } from 'react-icons/gi';
+import { MdApartment, MdOutlineHouse } from 'react-icons/md';
+import { RiBuilding3Line } from 'react-icons/ri';
+import { IoMdHome } from 'react-icons/io';
+
 export const listingCategories = [
   {
     label: 'Single',
@@ -172,96 +177,91 @@ export const listingCategories = [
 export const categories = [
   {
     label: 'Single',
-    icon: '/images/est_2.jpg',
+    icon: <IoMdHome size={28}/>,
     description: 'This property is a single-family home.',
   },
   {
     label: 'Condominium',
-    icon: '/images/est_2.jpg',
+    icon: <FaBuilding size={28}/>,
     description: 'This property is a condominium (condo).',
   },
   {
     label: 'Townhouse',
-    icon: '/images/est_2.jpg',
+    icon: <MdOutlineHouse size={28}/>,
     description: 'This property is a townhouse.',
   },
   {
     label: 'Apartment',
-    icon: '/images/est_2.jpg',
+    icon: <MdApartment size={28}/>,
     description: 'This property is an apartment.',
   },
   {
     label: 'Duplex',
-    icon: '/images/est_2.jpg',
+    icon: <FaCity size={28}/>,
     description: 'This property is a duplex.',
   },
   {
     label: 'Triplex',
-    icon: '/images/est_2.jpg',
+    icon: <RiBuilding3Line size={28}/>,
     description: 'This property is a triplex.',
   },
   {
     label: 'Quadruplex',
-    icon: '/images/est_2.jpg',
+    icon: <FaWarehouse size={28}/>,
     description: 'This property is a quadruplex.',
   },
   {
     label: 'Family',
-    icon: '/images/est_2.jpg',
+    icon: <GiFamilyHouse size={28}/>,
     description: 'This property is a multi-family home.',
   },
   {
     label: 'Villa',
-    icon: '/images/est_2.jpg',
+    icon: <MdOutlineVilla size={28}/>,
     description: 'This property is a villa.',
   },
   {
-    label: 'Bungalow',
-    icon: '/images/est_2.jpg',
-    description: 'This property is a bungalow.',
-  },
-  {
     label: 'Mansion',
-    icon: '/images/est_2.jpg',
+    icon: <BsBuildingsFill size={28}/>,
     description: 'This property is a mansion.',
   },
   {
     label: 'Cottage',
-    icon: '/images/est_2.jpg',
+    icon: <FaTree/>,
     description: 'This property is a cottage.',
   },
   {
     label: 'Penthouse',
-    icon: '/images/est_2.jpg',
+    icon: <FaHome size={28}/>,
     description: 'This property is a penthouse.',
   },
   {
     label: 'Studio',
-    icon: '/images/est_2.jpg',
+    icon: <FaBuilding size={28}/>,
     description: 'This property is a studio apartment.',
   },
   {
     label: 'Loft',
-    icon: '/images/est_2.jpg',
+    icon: <GiModernCity size={28}/>,
     description: 'This property is a loft.',
   },
   {
     label: 'Mobile',
-    icon: '/images/est_2.jpg',
+    icon: <FaHome size={28}/>,
     description: 'This property is a mobile home.',
   },
   {
     label: 'Farmhouse',
-    icon: '/images/est_2.jpg',
+    icon: <GiFarmTractor size={28}/>,
     description: 'This property is a farmhouse.',
   },
   {
     label: 'Log Cabin',
-    icon: '/images/est_2.jpg',
+    icon: <GiWoodCabin size={28}/>,
     description: 'This property is a log cabin.',
   },
-
 ];
+
 
 export const listingTypes = [
   /*{

@@ -1,10 +1,9 @@
 'use client';
 
-import Image from "next/image";
-import { IconType } from "react-icons";
+import { ReactNode } from 'react';
 
 interface PropertyInputProps {
-  icon: string;
+  icon: ReactNode; // ReactNode to accept the icon as JSX
   label: string;
   selected?: boolean;
   onClick: (value: string) => void;
@@ -20,46 +19,50 @@ const PropertyInput: React.FC<PropertyInputProps> = ({
     <div
       onClick={() => onClick(label)}
       className={`
-        rounded-xl
+        rounded-lg
         border-2
         w-[100px]
-        h-[140px]
+        h-[130px]
         px-1
         py-2
         relative
         flex
+        flex-col
         justify-center
-        items-start
-        gap-3
-        hover:border-neutral-200
-        transition
+        items-center
+        gap-2
+        shadow-md
+        hover:shadow-lg
+        hover:scale-105
+        transition-transform
         cursor-pointer
-        overflow-hidden
-        
+        bg-neutral-100
+        ${selected ? 'border-slate-600 bg-slate-50' : 'border-gray-300'}
       `}
     >
-      <Image
-        alt="property type_image"
-        src={icon}
-        fill
-        className="opacity-50"
-      />
-      <p className={`
-        absolute 
-        bottom-3 
-        font-semibold 
-        text-xs 
-        bg-gradient-to-r from-blue-500 to-teal-500
-        text-white 
-        px-2 py-1 
-        rounded-md 
-        max-w-full 
-        text-center 
-        ${selected ? 'bg-yellow-800 text-white' : 'border-neutral-200'}
-        overflow-hidden 
-        text-ellipsis 
-        whitespace-nowrap
-      `}>
+      {/* Render the icon */}
+      <div className="text-4xl text-slate-500 mb-2">
+        {icon}
+      </div>
+
+      <p
+        className={`
+          font-semibold 
+          text-sm 
+          text-gray-700 
+          bg-gradient-to-r from-slate-500 to-teal-500
+          text-transparent
+          bg-clip-text
+          px-2 
+          py-1 
+          rounded-md 
+          max-w-full 
+          text-center 
+          overflow-hidden 
+          text-ellipsis 
+          whitespace-nowrap
+        `}
+      >
         {label}
       </p>
     </div>
@@ -67,4 +70,3 @@ const PropertyInput: React.FC<PropertyInputProps> = ({
 }
 
 export default PropertyInput;
-

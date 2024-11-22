@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import Container from '../Container';
 import { ChevronDown } from 'lucide-react';
 import { cn, formUrlQuery, removeKeysFromQuery } from '@/app/lib/utils';
-import { District, Province, Town, provinces } from '@/app/data';
+import { District, Province, Town, provincesArr } from '@/app/data';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
@@ -133,7 +133,7 @@ const Dropdown: React.FC = () => {
                        rounded-full
                     "
             >
-                {provinces.map((province) => (
+                {provincesArr.map((province) => (
                     <div
                         key={province.name}
                         className="w-full sm:py-1 md:py-2 hover:bg-white hover:text-slate-900 text-yellow-900 cursor-pointer border-r-[0.5px] border-neutral-200"

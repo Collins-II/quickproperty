@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import { connectToDatabase } from "@/app/lib/database";
-import { initiateMtnPayment } from "@/app/lib/mtn.apis";
 import Reservation from "@/app/lib/database/models/reservation.model";
 import User from "@/app/lib/database/models/user.model";
 import Listing from "@/app/lib/database/models/listing.model";
@@ -25,12 +24,6 @@ export async function POST(request: Request) {
             return new NextResponse('Unauthorized', { status: 401 });
         }
 
-        // Initiate MTN payment
-        /* const paymentResponse = await initiateMtnPayment(amount, mobileNumber);
-         if (!paymentResponse) {
-             return new NextResponse('Payment Failed', { status: 500 });
-         }*/
-
         // Prepare the reservation data
         const reservationData = {
             userId: currentUser._id,
@@ -47,12 +40,12 @@ export async function POST(request: Request) {
         // Get the ID of the newly created reservation
         const reservationId = reservation._id;
 
-        // Update the user with the new reservation
+        // Update the listing with the new reservation and populate the `user` field
         const listingAndReservation = await Listing.findOneAndUpdate(
             { _id: listingId },
             { $addToSet: { reservationIds: reservationId } },
             { new: true }
-        );
+        ).populate('user');
 
         if (!listingAndReservation) {
             return new NextResponse('Listing Not Found', { status: 404 });
